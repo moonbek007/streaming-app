@@ -1,11 +1,19 @@
 import React from 'react'
+import {connect} from "react-redux";
 
-function MainPage() {
+function MainPage({isLoggedIn,favourites}) {
+    React.useEffect(()=>{
+        console.log(isLoggedIn,favourites);
+    },[])
     return (
-        <div>
-            
+        <div className="main-page">
+            <h1>Main Page</h1>
         </div>
     )
 }
 
-export default MainPage
+const mapStateToProps = state => ({
+  ...state
+})
+
+export default connect(mapStateToProps)(MainPage);

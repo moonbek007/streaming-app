@@ -2,8 +2,8 @@ import React from 'react'
 
 function Filters() {
     return (
-        <div>
-            
+        <div className="filters">
+            <h1>Filters</h1>
         </div>
     )
 }
