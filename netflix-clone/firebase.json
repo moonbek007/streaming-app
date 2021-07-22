@@ -1,0 +1,9 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "site": "moonbek-netflix-clone",
+    "public": "public"
+  }
+}

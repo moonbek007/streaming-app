@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import firebase from "firebase";
 
 function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+  React.useEffect(() => {
+    const db = firebase.database();
+  }, []);
+  return <div className="App"></div>;
 }
 
 export default App;
