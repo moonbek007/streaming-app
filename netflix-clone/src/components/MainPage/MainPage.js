@@ -13,10 +13,12 @@ function MainPage({isLoggedIn,favourites}) {
     React.useEffect(()=>{
         getShows().then(resp => setShows(resp));
         console.log(shows);
-    },[])
+    },[]);
     return (
         <div className="main-page">
             <h1>Main Page</h1>
+            <h2>{shows[9]?.rating?.average ?? "...loading"
+ }</h2>
         </div>
     )
 }
