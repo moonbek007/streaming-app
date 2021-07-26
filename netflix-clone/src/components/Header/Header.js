@@ -9,12 +9,14 @@ import {
 } from "react-icons/md";
 import { FaTimesCircle } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
-import { connect } from "react-redux";
-
-function Header({ isLoggedIn, activeLink }) {
+import { connect, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import Notifications from "./Notifications/Notifications";
+function Header({ isLoggedIn, activeLink, showNotifications }) {
   const [searchWord, setSearchWord] = React.useState("Random Show");
 
   const searchRef = React.useRef();
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     searchRef.current.focus();
@@ -43,37 +45,54 @@ function Header({ isLoggedIn, activeLink }) {
         </button>
       </div>
       <div className="header__icons">
-        <button className="header__icons__notifications">
-          <MdNotificationsActive
-            className={`header__icons__notifications__icon ${
-              activeLink === "notifications" ? "header__icons__active" : ""
-            }`}
-          />
-        </button>
-        <button className="header__icons__explore">
-          <MdExplore
-            className={`header__icons__explore__icon ${
-              activeLink === "explore" ? "header__icons__active" : ""
-            }`}
-          />
-        </button>
-        <button className="header__icons__favourites">
-          <MdFavoriteBorder
-            className={`header__icons__favourites__icon ${
-              activeLink === "favourites" ? "header__icons__active" : ""
-            }`}
-          />
-        </button>
-        <button className="header__icons__login">
-          {isLoggedIn ? (
-            <VscAccount className={`header__icons__login__account-icon`} />
-          ) : (
-            <IoMdLogIn
-              className={`header__icons__login__login-icon ${
-                activeLink === "login" ? "header__icons__active" : ""
+        {showNotifications ? <Notifications /> : ""}
+        <button
+          className="header__icons__notifications"
+          onClick={() => {
+            if (isLoggedIn) {
+              dispatch({ type: "TOGGLE_NOTIFICATIONS" });
+            }
+          }}
+        >
+          <Link to={isLoggedIn ? "#" : "/login"}>
+            <MdNotificationsActive
+              className={`header__icons__notifications__icon ${
+                activeLink === "notifications" ? "header__icons__active" : ""
               }`}
             />
-          )}
+          </Link>
+        </button>
+        <button className="header__icons__explore">
+          <Link to="/explore">
+            <MdExplore
+              className={`header__icons__explore__icon ${
+                activeLink === "explore" ? "header__icons__active" : ""
+              }`}
+            />
+          </Link>
+        </button>
+        <button className="header__icons__favourites">
+          <Link to={isLoggedIn ? "/favourites" : "/login"}>
+            <MdFavoriteBorder
+              className={`header__icons__favourites__icon ${
+                activeLink === "favourites" ? "header__icons__active" : ""
+              }`}
+            />
+          </Link>
+        </button>
+
+        <button className="header__icons__login">
+          <Link to="/login">
+            {isLoggedIn ? (
+              <VscAccount className={`header__icons__login__account-icon`} />
+            ) : (
+              <IoMdLogIn
+                className={`header__icons__login__login-icon ${
+                  activeLink === "login" ? "header__icons__active" : ""
+                }`}
+              />
+            )}
+          </Link>
         </button>
       </div>
     </>
@@ -83,6 +102,7 @@ function Header({ isLoggedIn, activeLink }) {
 const mapStateToProps = (state) => ({
   isLoggedIn: state.isLoggedIn,
   activeLink: state.activeLink,
+  showNotifications: state.showNotifications,
 });
 
 export default connect(mapStateToProps)(Header);

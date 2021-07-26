@@ -1,22 +1,20 @@
 .header {
   width: 100vw;
   height: 10vh;
-  background-color: rgba(0, 0, 0, 0.315);
   position: relative;
 }
 .header__input {
   position: absolute;
-  left: 60vw;
+  left: 30vw;
   top: 15px;
 }
 .header__input__input-field, .header__input__search-button, .header__input__clear-button {
   outline: none;
   border: none;
-  padding: 7px;
 }
 .header__input__input-field {
   text-align: center;
-  padding-top: 8px;
+  padding: 6px;
 }
 .header__input__search-button {
   background: white;
@@ -24,6 +22,8 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   cursor: pointer;
+  padding: 5px;
+  padding-bottom: 6px;
 }
 .header__input__search-button__icon {
   transition: all 500ms;
@@ -37,6 +37,8 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   cursor: pointer;
+  padding: 5px;
+  padding-bottom: 6px;
 }
 .header__input__clear-button__icon {
   transition: all 500ms;
@@ -45,7 +47,7 @@
   transform: scale(1.5);
 }
 .header__icons {
-  background-color: white;
+  background-color: inherit;
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -55,7 +57,19 @@
   top: 10px;
   right: 10vw;
 }
+.header__icons__active {
+  color: black;
+  border-bottom: 2px solid #3689b9;
+  border-radius: 10%;
+}
 .header__icons > button {
   cursor: pointer;
   margin: 5px;
+  outline: none;
+  border: none;
+  background: inherit;
+  font-size: 22px;
+}
+.header__icons > button > svg {
+  padding: 5px;
 }/*# sourceMappingURL=styles.css.map */

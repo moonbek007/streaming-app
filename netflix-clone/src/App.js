@@ -13,8 +13,6 @@ import store from "./js/redux.js";
 function App() {
   React.useEffect(() => {
     const db = firebase.database();
-    console.log(db);
-    console.log(store.getState());
   }, []);
   return (
     <Provider store={store}>
