@@ -20,6 +20,8 @@ const state = {
   notifications: [],
   showNotifications: false,
   shows: [],
+  searchWord: "",
+  searchResults: {},
 };
 
 const store = createStore(reducer, state);

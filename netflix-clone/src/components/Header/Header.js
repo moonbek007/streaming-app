@@ -12,6 +12,7 @@ import { VscAccount } from "react-icons/vsc";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Notifications from "./Notifications/Notifications";
+import SearchResults from "./SearchResults/SearchResults";
 function Header({ isLoggedIn, activeLink, showNotifications }) {
   const [searchWord, setSearchWord] = React.useState("Random Show");
 
@@ -43,6 +44,7 @@ function Header({ isLoggedIn, activeLink, showNotifications }) {
         <button className="header__input__search-button">
           <AiOutlineSearch className="header__input__search-button__icon" />
         </button>
+        <SearchResults />
       </div>
       <div className="header__icons">
         {showNotifications ? <Notifications /> : ""}
