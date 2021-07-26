@@ -1,8 +1,8 @@
-import "./css/styles.css";
+// import "./css/styles.css";
 import React from "react";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import firebase from "firebase";
-import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import MainPage from "./components/MainPage/MainPage";
 import Filters from "./components/Filters/Filters";
@@ -21,30 +21,30 @@ function App() {
       <Router>
         <header className="header">
           <Route>
-            <Header/>
+            <Header />
           </Route>
         </header>
         <main>
           <Switch>
             <Route path="/filters">
-              <Filters/>
+              <Filters />
             </Route>
             <Route path="/login">
-              <Login/>
+              <Login />
             </Route>
             <Route path="/">
-              <MainPage/>
+              <MainPage />
             </Route>
           </Switch>
         </main>
         <footer className="footer">
           <Route>
-            <Footer/>
+            <Footer />
           </Route>
         </footer>
       </Router>
     </Provider>
-  )
+  );
 }
 
 export default App;

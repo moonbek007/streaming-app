@@ -11,7 +11,7 @@ import { FaTimesCircle } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { connect } from "react-redux";
 
-function Header({ isLoggedIn }) {
+function Header({ isLoggedIn, activeLink }) {
   const [searchWord, setSearchWord] = React.useState("Random Show");
 
   const searchRef = React.useRef();
@@ -44,19 +44,35 @@ function Header({ isLoggedIn }) {
       </div>
       <div className="header__icons">
         <button className="header__icons__notifications">
-          <MdNotificationsActive className="header__icons__notifications__icon" />
+          <MdNotificationsActive
+            className={`header__icons__notifications__icon ${
+              activeLink === "notifications" ? "header__icons__active" : ""
+            }`}
+          />
         </button>
         <button className="header__icons__explore">
-          <MdExplore className="header__icons__explore__icon" />
+          <MdExplore
+            className={`header__icons__explore__icon ${
+              activeLink === "explore" ? "header__icons__active" : ""
+            }`}
+          />
         </button>
         <button className="header__icons__favourites">
-          <MdFavoriteBorder className="header__icons__favourites__icon" />
+          <MdFavoriteBorder
+            className={`header__icons__favourites__icon ${
+              activeLink === "favourites" ? "header__icons__active" : ""
+            }`}
+          />
         </button>
         <button className="header__icons__login">
           {isLoggedIn ? (
-            <VscAccount className="header__icons__login__account-icon" />
+            <VscAccount className={`header__icons__login__account-icon`} />
           ) : (
-            <IoMdLogIn className="header__icons__login__login-icon" />
+            <IoMdLogIn
+              className={`header__icons__login__login-icon ${
+                activeLink === "login" ? "header__icons__active" : ""
+              }`}
+            />
           )}
         </button>
       </div>
@@ -66,6 +82,7 @@ function Header({ isLoggedIn }) {
 
 const mapStateToProps = (state) => ({
   isLoggedIn: state.isLoggedIn,
+  activeLink: state.activeLink,
 });
 
 export default connect(mapStateToProps)(Header);
