@@ -2,6 +2,7 @@ import React from "react";
 import "../../css/header.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdLogIn } from "react-icons/io";
+import { IoFilter } from "react-icons/io5";
 import {
   MdExplore,
   MdNotificationsActive,
@@ -13,10 +14,9 @@ import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Notifications from "./Notifications/Notifications";
 import SearchResults from "./SearchResults/SearchResults";
-function Header({ isLoggedIn, activeLink, showNotifications }) {
-  const [searchWord, setSearchWord] = React.useState("Random Show");
-
+function Header({ isLoggedIn, activeLink, showNotifications, searchWord }) {
   const searchRef = React.useRef();
+  const filtersRef = React.useRef();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -24,13 +24,31 @@ function Header({ isLoggedIn, activeLink, showNotifications }) {
   }, []);
 
   const handleChange = (event) => {
-    setSearchWord(event.target.value);
+    dispatch({ type: "SET_SEARCH_WORD", payload: event.target.value });
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      filtersRef.current.click();
+    }
+  };
+
+  const handleSearchButtonClick = () => {
+    filtersRef.current.click();
+    dispatch({ type: "ADD_TO_FILTERED_SHOWS", payload: searchWord });
+  };
+
+  const handleClearButtonClick = () => {
+    dispatch({ type: "CLEAR_SEARCH_WORD" });
   };
 
   return (
     <>
       <div className="header__input">
-        <button className="header__input__clear-button">
+        <button
+          className="header__input__clear-button"
+          onClick={handleClearButtonClick}
+        >
           <FaTimesCircle className="hedaer__input__clear-button__icon" />
         </button>
         <input
@@ -40,14 +58,34 @@ function Header({ isLoggedIn, activeLink, showNotifications }) {
           onChange={handleChange}
           placeholder={"Search a Show"}
           className="header__input__input-field"
+          onKeyDown={handleKeyDown}
         />
-        <button className="header__input__search-button">
+        <button
+          className="header__input__search-button"
+          onClick={handleSearchButtonClick}
+        >
           <AiOutlineSearch className="header__input__search-button__icon" />
         </button>
         <SearchResults />
       </div>
       <div className="header__icons">
         {showNotifications ? <Notifications /> : ""}
+        <button className="header__icons__filters">
+          <Link
+            to="/filters"
+            ref={filtersRef}
+            onClick={() => {
+              dispatch({ type: "CHANGE_ACTIVE_LINK", payload: "/filters" });
+            }}
+            id="filters-icon"
+          >
+            <IoFilter
+              className={`header__icons__filters__icon ${
+                activeLink === "filters" ? "header__icons__active" : ""
+              }`}
+            />
+          </Link>
+        </button>
         <button
           className="header__icons__notifications"
           onClick={() => {
@@ -56,7 +94,15 @@ function Header({ isLoggedIn, activeLink, showNotifications }) {
             }
           }}
         >
-          <Link to={isLoggedIn ? "#" : "/login"}>
+          <Link
+            to={isLoggedIn ? "#" : "/login"}
+            onClick={() => {
+              if (!isLoggedIn) {
+                dispatch({ type: "CHANGE_ACTIVE_LINK", payload: "/login" });
+              }
+            }}
+            id="notifications-icon"
+          >
             <MdNotificationsActive
               className={`header__icons__notifications__icon ${
                 activeLink === "notifications" ? "header__icons__active" : ""
@@ -65,7 +111,13 @@ function Header({ isLoggedIn, activeLink, showNotifications }) {
           </Link>
         </button>
         <button className="header__icons__explore">
-          <Link to="/explore">
+          <Link
+            to="/explore"
+            onClick={() => {
+              dispatch({ type: "CHANGE_ACTIVE_LINK", payload: "/explore" });
+            }}
+            id="explore-icon"
+          >
             <MdExplore
               className={`header__icons__explore__icon ${
                 activeLink === "explore" ? "header__icons__active" : ""
@@ -74,7 +126,16 @@ function Header({ isLoggedIn, activeLink, showNotifications }) {
           </Link>
         </button>
         <button className="header__icons__favourites">
-          <Link to={isLoggedIn ? "/favourites" : "/login"}>
+          <Link
+            to={isLoggedIn ? "/favourites" : "/login"}
+            onClick={() => {
+              dispatch({
+                type: "CHANGE_ACTIVE_LINK",
+                payload: isLoggedIn ? "/favourites" : "/login",
+              });
+            }}
+            id="favourites-icon"
+          >
             <MdFavoriteBorder
               className={`header__icons__favourites__icon ${
                 activeLink === "favourites" ? "header__icons__active" : ""
@@ -84,7 +145,16 @@ function Header({ isLoggedIn, activeLink, showNotifications }) {
         </button>
 
         <button className="header__icons__login">
-          <Link to="/login">
+          <Link
+            to="/login"
+            onClick={() => {
+              dispatch({
+                type: "CHANGE_ACTIVE_LINK",
+                payload: "/login",
+              });
+            }}
+            id="login-icon"
+          >
             {isLoggedIn ? (
               <VscAccount className={`header__icons__login__account-icon`} />
             ) : (
@@ -105,6 +175,7 @@ const mapStateToProps = (state) => ({
   isLoggedIn: state.isLoggedIn,
   activeLink: state.activeLink,
   showNotifications: state.showNotifications,
+  searchWord: state.searchWord,
 });
 
 export default connect(mapStateToProps)(Header);

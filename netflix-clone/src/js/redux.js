@@ -7,6 +7,13 @@ const reducer = (state, action) => {
     case "GET_ALL_SHOWS":
       console.log(action.payload);
       return { ...state, shows: action.payload };
+    case "CHANGE_ACTIVE_LINK":
+      console.log(`changing link to ${action.payload}`);
+      return state;
+    case "SET_SEARCH_WORD":
+      return { ...state, searchWord: action.payload };
+    case "CLEAR_SEARCH_WORD":
+      return { ...state, searchWord: "", searchResults: [] };
     default:
       return state;
   }
@@ -20,8 +27,9 @@ const state = {
   notifications: [],
   showNotifications: false,
   shows: [],
+  filteredShows: [],
   searchWord: "",
-  searchResults: {},
+  searchResults: [],
 };
 
 const store = createStore(reducer, state);

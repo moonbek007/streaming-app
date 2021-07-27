@@ -1,4 +1,4 @@
-// import "./css/styles.css";
+import "./App.css";
 import React from "react";
 import { Provider } from "react-redux";
 import firebase from "firebase";
@@ -15,33 +15,35 @@ function App() {
     const db = firebase.database();
   }, []);
   return (
-    <Provider store={store}>
-      <Router>
-        <header className="header">
-          <Route>
-            <Header />
-          </Route>
-        </header>
-        <main>
-          <Switch>
-            <Route path="/filters">
-              <Filters />
+    <div className="App">
+      <Provider store={store}>
+        <Router>
+          <header className="header">
+            <Route>
+              <Header />
             </Route>
-            <Route path="/login">
-              <Login />
+          </header>
+          <main>
+            <Switch>
+              <Route path="/filters">
+                <Filters />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/">
+                <MainPage />
+              </Route>
+            </Switch>
+          </main>
+          <footer className="footer">
+            <Route>
+              <Footer />
             </Route>
-            <Route path="/">
-              <MainPage />
-            </Route>
-          </Switch>
-        </main>
-        <footer className="footer">
-          <Route>
-            <Footer />
-          </Route>
-        </footer>
-      </Router>
-    </Provider>
+          </footer>
+        </Router>
+      </Provider>
+    </div>
   );
 }
 

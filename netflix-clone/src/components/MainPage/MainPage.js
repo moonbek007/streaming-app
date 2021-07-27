@@ -1,6 +1,8 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
 import axios from "../../js/axios";
+import "../../css/explore.css";
+import Row from "./Row/Row";
 
 async function getShows() {
   let sortedShows = await axios.get("/shows").then((resp) => resp.data);
@@ -20,9 +22,12 @@ function MainPage({ isLoggedIn, favourites }) {
     });
   }, []);
   return (
-    <div className="main-page">
-      <h1>Main Page</h1>
-      <h2>{shows[9]?.rating?.average ?? "...loading"}</h2>
+    <div className="explore">
+      {/* <h2>{shows[9]?.rating?.average ?? "...loading"}</h2> */}
+      <Row />
+      <Row />
+      <Row />
+      <Row />
     </div>
   );
 }

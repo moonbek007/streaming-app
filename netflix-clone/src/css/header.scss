@@ -1,12 +1,10 @@
 .header {
   width: 100vw;
   height: 10vh;
-  // background-color: rgba(0, 0, 0, 0.315);
-  position: relative;
 
   &__input {
     position: absolute;
-    left: 30vw;
+    left: 10vw;
     top: 15px;
 
     &__input-field,
@@ -14,44 +12,35 @@
     &__clear-button {
       outline: none;
       border: none;
+      background: rgba(45, 65, 63, 0.856);
+      border: 1px solid;
+      color: wheat;
     }
 
     &__input-field {
+      color: wheat;
       text-align: center;
       padding: 6px;
+      border-left: none;
+      border-right: none;
     }
 
     &__search-button {
-      background: white;
-      color: lightseagreen;
+      border-left: none;
+      // color: rgb(8, 8, 8);
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
       cursor: pointer;
       padding: 5px;
       padding-bottom: 6px;
-
-      &__icon {
-        transition: all 500ms;
-        &:hover {
-          transform: scale(1.5);
-        }
-      }
     }
     &__clear-button {
-      background: white;
-      color: red;
+      border-right: none;
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
       cursor: pointer;
       padding: 5px;
       padding-bottom: 6px;
-
-      &__icon {
-        transition: all 500ms;
-        &:hover {
-          transform: scale(1.5);
-        }
-      }
     }
   }
 
@@ -85,4 +74,20 @@
       }
     }
   }
+}
+
+#filters-icon {
+  color: white;
+}
+#favourites-icon {
+  color: red;
+}
+#notifications-icon {
+  color: gold;
+}
+#login-icon {
+  color: lightskyblue;
+}
+#explore-icon {
+  color: white;
 }
