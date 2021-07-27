@@ -1,5 +1,93 @@
-.header{
-    width: 100vw;
-    height: 10vh;
-    background-color: rgba(0,0,0,0.3);
+.header {
+  width: 100vw;
+  height: 10vh;
+
+  &__input {
+    position: absolute;
+    left: 10vw;
+    top: 15px;
+
+    &__input-field,
+    &__search-button,
+    &__clear-button {
+      outline: none;
+      border: none;
+      background: rgba(45, 65, 63, 0.856);
+      border: 1px solid;
+      color: wheat;
+    }
+
+    &__input-field {
+      color: wheat;
+      text-align: center;
+      padding: 6px;
+      border-left: none;
+      border-right: none;
+    }
+
+    &__search-button {
+      border-left: none;
+      // color: rgb(8, 8, 8);
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      cursor: pointer;
+      padding: 5px;
+      padding-bottom: 6px;
+    }
+    &__clear-button {
+      border-right: none;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      cursor: pointer;
+      padding: 5px;
+      padding-bottom: 6px;
+    }
+  }
+
+  &__icons {
+    background-color: inherit;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10vw;
+
+    &__active {
+      color: black;
+      border-bottom: 2px solid rgb(54, 137, 185);
+      border-radius: 10%;
+    }
+
+    & > button {
+      cursor: pointer;
+      margin: 5px;
+      outline: none;
+      border: none;
+      background: inherit;
+      font-size: 22px;
+
+      & > svg {
+        padding: 5px;
+      }
+    }
+  }
+}
+
+#filters-icon {
+  color: white;
+}
+#favourites-icon {
+  color: red;
+}
+#notifications-icon {
+  color: gold;
+}
+#login-icon {
+  color: lightskyblue;
+}
+#explore-icon {
+  color: white;
 }
