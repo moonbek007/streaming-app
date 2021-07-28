@@ -10,14 +10,19 @@
 .header__input__input-field, .header__input__search-button, .header__input__clear-button {
   outline: none;
   border: none;
+  background: rgba(45, 65, 63, 0.856);
+  border: 1px solid;
+  color: wheat;
 }
 .header__input__input-field {
+  color: wheat;
   text-align: center;
   padding: 6px;
+  border-left: none;
+  border-right: none;
 }
 .header__input__search-button {
-  background: white;
-  color: lightseagreen;
+  border-left: none;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   cursor: pointer;
@@ -25,8 +30,7 @@
   padding-bottom: 6px;
 }
 .header__input__clear-button {
-  background: white;
-  color: red;
+  border-right: none;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   cursor: pointer;
@@ -59,6 +63,26 @@
 }
 .header__icons > button > svg {
   padding: 5px;
+}
+
+#filters-icon {
+  color: white;
+}
+
+#favourites-icon {
+  color: red;
+}
+
+#notifications-icon {
+  color: gold;
+}
+
+#login-icon {
+  color: lightskyblue;
+}
+
+#explore-icon {
+  color: white;
 }
 
 ::-webkit-scrollbar {
