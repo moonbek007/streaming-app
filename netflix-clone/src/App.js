@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
 import { Provider } from "react-redux";
-import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import MainPage from "./components/MainPage/MainPage";
@@ -9,11 +8,12 @@ import Filters from "./components/Filters/Filters";
 import Login from "./components/Login/Login";
 import Footer from "./components/Footer/Footer";
 import store from "./js/redux.js";
+import firebase from "firebase";
+
+export const db = firebase.database();
 
 function App() {
-  React.useEffect(() => {
-    const db = firebase.database();
-  }, []);
+  React.useEffect(() => {});
   return (
     <div className="App">
       <Provider store={store}>

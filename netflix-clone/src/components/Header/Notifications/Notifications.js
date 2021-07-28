@@ -1,6 +1,5 @@
 import React from "react";
 import { AiFillCloseSquare } from "react-icons/ai";
-import { FaStar } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
 import "../../../css/notifications.css";
 import Notification from "./Notification";
