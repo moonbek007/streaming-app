@@ -12,22 +12,20 @@ async function getShows() {
   return sortedShows;
 }
 
-function MainPage({ isLoggedIn, favourites }) {
-  const dispactch = useDispatch();
+function MainPage({ isLoggedIn, favourites, showsByGenre }) {
+  const dispatch = useDispatch();
   const [shows, setShows] = React.useState([]);
   React.useEffect(() => {
     getShows().then((resp) => {
       setShows(resp);
-      dispactch({ type: "GET_ALL_SHOWS", payload: resp });
+      dispatch({ type: "GET_ALL_SHOWS", payload: resp });
     });
   }, []);
   return (
     <div className="explore">
-      {/* <h2>{shows[9]?.rating?.average ?? "...loading"}</h2> */}
-      <Row />
-      <Row />
-      <Row />
-      <Row />
+      {genres.map((item, index) => {
+        return <Row genre={item} key={index} />;
+      })}
     </div>
   );
 }
@@ -35,5 +33,19 @@ function MainPage({ isLoggedIn, favourites }) {
 const mapStateToProps = (state) => ({
   ...state,
 });
+
+const genres = [
+  "Drama",
+  "Action",
+  "Adventure",
+  "Crime",
+  "Anime",
+  "Horror",
+  "Thriller",
+  "Comedy",
+  "Romance",
+  "Family",
+  "War",
+];
 
 export default connect(mapStateToProps)(MainPage);

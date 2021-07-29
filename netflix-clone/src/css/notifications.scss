@@ -3,6 +3,7 @@
 
 .notifications {
   position: absolute;
+  z-index: 100;
   top: 0px;
   opacity: 0;
   width: 200px;

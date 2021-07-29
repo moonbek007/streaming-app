@@ -50,4 +50,35 @@
 }
 .element__info p {
   margin: 0;
+}
+
+.loading {
+  color: gold;
+  font-size: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.loading-icon {
+  -webkit-animation-name: rotate;
+          animation-name: rotate;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
 }/*# sourceMappingURL=explore.css.map */

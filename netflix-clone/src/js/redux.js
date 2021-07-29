@@ -5,12 +5,27 @@ const reducer = (state, action) => {
       return { ...state, showNotifications: !state.showNotifications };
     case "GET_ALL_SHOWS":
       console.log(action.payload);
-      return { ...state, shows: action.payload, filteredShows: action.payload };
+      return {
+        ...state,
+        shows: action.payload,
+        filteredShows: action.payload,
+      };
     case "CHANGE_ACTIVE_LINK":
       console.log(`changing link to ${action.payload}`);
       return state;
     case "SET_SEARCH_WORD":
-      return { ...state, searchWord: action.payload };
+      const regex = new RegExp(`${action.payload}`);
+      let newFilteredShows = [];
+      for (let i = 0; i < state.shows.length; i++) {
+        if (regex.test(state.shows[i].name)) {
+          newFilteredShows.push(state.shows[i]);
+        }
+      }
+      return {
+        ...state,
+        searchWord: action.payload,
+        filteredShows: newFilteredShows,
+      };
     case "CLEAR_SEARCH_WORD":
       return { ...state, searchWord: "", searchResults: [] };
     case "ADD_FILTERS":
@@ -34,6 +49,8 @@ const state = {
   filteredShows: [],
   searchWord: "",
   searchResults: [],
+  showsByGenre: {},
+  showFriends: false,
 };
 
 const store = createStore(reducer, state);

@@ -1,8 +1,38 @@
 import React from "react";
-
-function FilterResult({ image, link, name }) {
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { FcShare } from "react-icons/fc";
+import { connect, useDispatch } from "react-redux";
+function FilterResult({ image, link, name, isLoggedIn }) {
+  const [isFavourite, setIsFavourite] = React.useState(false);
+  const [showButtons, setShowButons] = React.useState(false);
+  const dispatch = useDispatch();
   return (
-    <div className="filter-result">
+    <div
+      className="filter-result"
+      onMouseOver={() => {
+        setShowButons(true);
+      }}
+      onMouseLeave={() => {
+        setShowButons(false);
+      }}
+    >
+      <p
+        className={
+          isLoggedIn && showButtons ? "buttons" : "buttons  buttons-invisible"
+        }
+      >
+        <button className="share" onClick={() => {}}>
+          <FcShare />
+        </button>
+        <button
+          className="heart"
+          onClick={() => {
+            setIsFavourite(!isFavourite);
+          }}
+        >
+          {isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
+        </button>
+      </p>
       <a
         href={link}
         className="filter-result__link"
@@ -16,4 +46,5 @@ function FilterResult({ image, link, name }) {
   );
 }
 
-export default FilterResult;
+const mapStateToProps = (state) => ({ isLoggedIn: state.isLoggedIn });
+export default connect(mapStateToProps)(FilterResult);

@@ -12,6 +12,7 @@
 }
 .search-results {
   position: absolute;
+  z-index: 2;
   top: 35px;
   display: none;
   justify-self: center;

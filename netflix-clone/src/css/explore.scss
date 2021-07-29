@@ -58,3 +58,27 @@
     }
   }
 }
+
+.loading {
+  color: gold;
+  font-size: 46px;
+  // background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  &-icon {
+    animation-name: rotate;
+    animation-duration: 1s;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+}
