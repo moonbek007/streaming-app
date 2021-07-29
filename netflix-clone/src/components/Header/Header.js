@@ -10,6 +10,7 @@ import {
 } from "react-icons/md";
 import { FaTimesCircle } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
+import { GoSettings } from "react-icons/go";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Notifications from "./Notifications/Notifications";
@@ -79,7 +80,7 @@ function Header({ isLoggedIn, activeLink, showNotifications, searchWord }) {
             }}
             id="filters-icon"
           >
-            <IoFilter
+            <GoSettings
               className={`header__icons__filters__icon ${
                 activeLink === "filters" ? "header__icons__active" : ""
               }`}

@@ -8,3 +8,7 @@
   background-attachment: fixed;
   position: relative;
 }
+
+.App-searching-mood {
+  overflow: hidden;
+}

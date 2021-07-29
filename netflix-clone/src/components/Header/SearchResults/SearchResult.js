@@ -1,40 +1,44 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-function SearchResult() {
+function SearchResult({
+  image,
+  link,
+  name,
+  status,
+  rating,
+  year,
+  genres,
+  description,
+}) {
   return (
     <>
       <div className="search-result__show">
-        <img
-          src="https://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg"
-          alt=""
-          className="search-result__show__image"
-        />
+        <img src={image} alt="" className="search-result__show__image" />
         <div className="search-result__show__info">
           <div className="search-result__show__info__row1">
             <h2 className="search-result__show__info__title">
-              <a
-                href="https://www.tvmaze.com/shows/169/breaking-bad"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Breaking Bad
+              <a href={link} target="_blank" rel="noreferrer">
+                {name}
               </a>
             </h2>
-            <p className="search-result__show__info__status">Ended</p>
+            <p className="search-result__show__info__status">{status}</p>
           </div>
           <div className="search-result__show__info__row2">
             <p className="search-result__show__info__rating">
-              <FaStar className="search-result__show__info__rating__icon" /> 9.2
+              <FaStar className="search-result__show__info__rating__icon" />{" "}
+              {rating}
             </p>
-            <p className="search-result__show__info__period">2012</p>
+            <p className="search-result__show__info__period">
+              {year.substring(0, 4)}
+            </p>
             <p className="search-result__show__info__genres">
-              Drama , Crime , Thriller
+              {genres?.join(", ")}
             </p>
           </div>
-          <p className="search-result__show__info__description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum nisi
-            distinctio voluptate,
-          </p>
+          <p
+            className="search-result__show__info__description"
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></p>
         </div>
       </div>
     </>
