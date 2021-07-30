@@ -24,13 +24,22 @@ function Notifications({ notifications, showNotifications, isLoggedIn }) {
           <AiFillCloseSquare />
         </div>
       </div>
-      {/* {notifications.map((show) => {
-        return show;
-      })} */}
-      <Notification />
-      <Notification />
-      <Notification />
-      <Notification />
+      {notifications.length > 0
+        ? notifications.map((show) => {
+            return (
+              <Notification
+                key={show.id}
+                image={show.image.medium}
+                name={show.name}
+                link={show.url}
+                rating={show?.rating?.average ?? "N/A"}
+                year={show.premiered}
+                sender={show.sender}
+                officialSite={show?.officialSite ?? "#"}
+              />
+            );
+          })
+        : ""}
     </div>
   );
 }

@@ -15,7 +15,15 @@ import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Notifications from "./Notifications/Notifications";
 import SearchResults from "./SearchResults/SearchResults";
-function Header({ isLoggedIn, activeLink, showNotifications, searchWord }) {
+import Friends from "./Friends/Friends";
+
+function Header({
+  isLoggedIn,
+  activeLink,
+  showNotifications,
+  searchWord,
+  numOfNotifications,
+}) {
   const searchRef = React.useRef();
   const filtersRef = React.useRef();
   const dispatch = useDispatch();
@@ -45,6 +53,7 @@ function Header({ isLoggedIn, activeLink, showNotifications, searchWord }) {
 
   return (
     <>
+      <Friends />
       <div className="header__input">
         <button
           className="header__input__clear-button"
@@ -147,7 +156,7 @@ function Header({ isLoggedIn, activeLink, showNotifications, searchWord }) {
 
         <button className="header__icons__login">
           <Link
-            to="/login"
+            to={!isLoggedIn ? `/login` : "/users"}
             onClick={() => {
               dispatch({
                 type: "CHANGE_ACTIVE_LINK",
@@ -177,6 +186,7 @@ const mapStateToProps = (state) => ({
   activeLink: state.activeLink,
   showNotifications: state.showNotifications,
   searchWord: state.searchWord,
+  numOfNotifications: state.notifications.length,
 });
 
 export default connect(mapStateToProps)(Header);

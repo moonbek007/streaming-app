@@ -25,6 +25,7 @@ function Row({ genre, showsToFilter }) {
           shows.map((show) => {
             return (
               <Element
+                show={show}
                 key={show.id}
                 image={show.image.medium}
                 name={show.name}

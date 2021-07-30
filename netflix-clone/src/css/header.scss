@@ -72,6 +72,10 @@
       & > svg {
         padding: 5px;
       }
+
+      &__notifications {
+        position: relative;
+      }
     }
   }
 }
