@@ -64,6 +64,9 @@
 .header__icons > button > svg {
   padding: 5px;
 }
+.header__icons > button__notifications {
+  position: relative;
+}
 
 #filters-icon {
   color: #b31c79;

@@ -2,7 +2,17 @@ import React from "react";
 import { connect, useDispatch } from "react-redux";
 import { FcShare } from "react-icons/fc";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-function Element({ link, image, name, year, country, isLoggedIn }) {
+import { axiosBackend } from "../../../js/axios";
+function Element({
+  link,
+  image,
+  name,
+  year,
+  country,
+  isLoggedIn,
+  show,
+  username,
+}) {
   const [isFavourite, setIsFavourite] = React.useState(false);
   const [showButtons, setShowButons] = React.useState(false);
   const dispatch = useDispatch();
@@ -21,13 +31,28 @@ function Element({ link, image, name, year, country, isLoggedIn }) {
           isLoggedIn && showButtons ? "buttons" : "buttons  buttons-invisible"
         }
       >
-        <button className="share" onClick={() => {}}>
+        <button
+          className="share"
+          onClick={() => {
+            dispatch({ type: "OPEN_FRIENDS", payload: show });
+          }}
+        >
           <FcShare />
         </button>
         <button
           className="heart"
           onClick={() => {
             setIsFavourite(!isFavourite);
+            dispatch({
+              type: `${
+                isFavourite ? "REMOVE_FROM_FAVOURITES" : "ADD_TO_FAVOURITES"
+              }`,
+              payload: show,
+            });
+            axiosBackend.put("/users/favourite", {
+              show: show,
+              user: username,
+            });
           }}
         >
           {isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
@@ -45,6 +70,9 @@ function Element({ link, image, name, year, country, isLoggedIn }) {
     </div>
   );
 }
-const mapStateToProps = (state) => ({ isLoggedIn: state.isLoggedIn });
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.isLoggedIn,
+  username: state.username,
+});
 
 export default connect(mapStateToProps)(Element);

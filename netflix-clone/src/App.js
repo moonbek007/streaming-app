@@ -8,13 +8,10 @@ import Filters from "./components/Filters/Filters";
 import Login from "./components/Login/Login";
 import Favourites from "./components/Favourites/Favourites";
 import Footer from "./components/Footer/Footer";
+import Users from "./components/Users/Users";
 import store from "./js/redux.js";
-import firebase from "firebase";
-
-// export const db = firebase.database();
 
 function App() {
-  React.useEffect(() => {});
   return (
     <div className="App">
       <Provider store={store}>
@@ -28,6 +25,9 @@ function App() {
             <Switch>
               <Route path="/favourites">
                 <Favourites />
+              </Route>
+              <Route path="/users">
+                <Users />
               </Route>
               <Route path="/filters">
                 <Filters />

@@ -8,8 +8,7 @@ function Filters({ shows }) {
   return (
     <div className="filters">
       <div className="filters__display">
-        <SearchBar />
-
+        {/* <SearchBar /> */}
         <FiltersAll />
         <div className="filters__display__results">
           {shows
@@ -20,6 +19,7 @@ function Filters({ shows }) {
                     key={show.id}
                     link={show.url}
                     name={show.name}
+                    show={show}
                   />
                 );
               })

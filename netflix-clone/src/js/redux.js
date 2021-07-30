@@ -1,4 +1,5 @@
 import { createStore } from "redux";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "TOGGLE_NOTIFICATIONS":
@@ -33,13 +34,64 @@ const reducer = (state, action) => {
         ...state,
         filteredShows: addFilters(state.shows, action.payload),
       };
+    case "LOGIN_USER":
+      console.log(action.payload);
+      return {
+        ...action.payload,
+        isLoggedIn: true,
+        activeLink: "/explore",
+        showNotifications: false,
+        shows: state.shows,
+        filteredShows: [],
+        searchWord: "",
+        searchResults: [],
+        showsByGenre: [],
+        showFriends: false,
+      };
+    case "REMOVE_FROM_FAVOURITES":
+      let newFavourites = state.favourites.filter((show) => {
+        return show.name !== action.payload.name;
+      });
+      return { ...state, favourites: newFavourites };
+    case "ADD_TO_FAVOURITES":
+      let isAlreadyFavourite = false;
+      for (let i = 0; i < state.favourites.length; i++) {
+        if (state.favourites[i].name === action.payload.name) {
+          isAlreadyFavourite = true;
+          break;
+        }
+      }
+      if (!isAlreadyFavourite) {
+        return {
+          ...state,
+          favourites: [...state.favourites, action.payload],
+        };
+      }
+      return state;
+    case "GET_USERS":
+      return { ...state, users: action.payload };
+    case "ADD_TO_FRIENDS":
+      return { ...state, friends: [...state.friends, action.payload] };
+    case "CLOSE_FRIENDS":
+      return { ...state, showFriends: false, showToRecommend: {} };
+    case "OPEN_FRIENDS":
+      console.log(action.payload);
+      return { ...state, showFriends: true, showToRecommend: action.payload };
+    case "SIGN_UP_NEW_USER":
+      return {
+        ...state,
+        username: action.payload.text,
+        password: action.payload.password,
+        email: action.payload.email,
+        isLoggedIn: true,
+      };
     default:
       return state;
   }
 };
 
 const state = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   activeLink: "login",
   favourites: [],
   friends: [],
@@ -51,6 +103,8 @@ const state = {
   searchResults: [],
   showsByGenre: {},
   showFriends: false,
+  users: [],
+  showToReccommend: {},
 };
 
 const store = createStore(reducer, state);

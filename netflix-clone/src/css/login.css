@@ -12,8 +12,10 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
+  position: relative;
 }
-.login__login-form__username, .login__login-form__password {
+.login__login-form__username,
+.login__login-form__password {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,4 +42,18 @@
 
 #signup-btn {
   background-color: orange;
-}/*# sourceMappingURL=login.css.map */
+}
+
+.modal {
+  visibility: hidden;
+  position: absolute;
+  top: 5px;
+  margin: 0;
+}
+
+.modal-open {
+  visibility: visible;
+  color: red;
+  font-size: 16px;
+  font-family: "Roboto";
+} /*# sourceMappingURL=login.css.map */
